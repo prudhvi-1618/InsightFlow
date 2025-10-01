@@ -6,3 +6,5 @@ assets/external/
 *.py[cod]
 
 .env
+
+env/

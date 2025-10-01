@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 interface SearchInfo {
   stages: string[]
@@ -28,7 +28,12 @@ const Home = () => {
     }
   ])
   const [currentMessage, setCurrentMessage] = useState("")
-  const [checkpointId, setCheckpointId] = useState<string | null>(null)
+  const [checkpointId, setCheckpointId] = useState<string | null>(null);
+  const endRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -200,8 +205,8 @@ const Home = () => {
   return (
     <main className="min-h-[100svh] bg-background text-foreground flex flex-col">
       <header className="border-b border-border">
-        <div className="mx-auto w-full max-w-3xl px-4 py-4 flex items-center justify-between">
-          <h1 className="text-balance text-lg md:text-xl font-semibold">Grok-style Assistant</h1>
+        <div className=" w-full  px-4 py-4 flex items-center justify-between">
+          <h1 className="text-balance text-lg md:text-xl font-semibold">My Assistant</h1>
           <span className="text-xs text-muted-foreground">Conversational • Web-aware</span>
         </div>
       </header>
@@ -214,6 +219,7 @@ const Home = () => {
         </div>
       </section>
       <div className="m-12"></div>
+      <div ref={endRef} />
       <div className="fixed bottom-0 w-full bg-card">
       <footer className="border-t border-border">
         <div className="mx-auto w-full max-w-3xl px-4 py-3">
@@ -271,13 +277,13 @@ function SearchStages({ searchInfo }: { searchInfo: SearchInfo }) {
       <div className="flex items-center gap-2 flex-wrap">
         {stages.includes("searching") && (
           <div className="bg-card border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
-            <Spinner />
+            {/* <Spinner /> */}
             <span className="text-xs">Searching…</span>
           </div>
         )}
         {stages.includes("reading") && (
           <div className="bg-card border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
-            <Spinner />
+            {/* <Spinner /> */}
             <span className="text-xs">Reading sources…</span>
           </div>
         )}

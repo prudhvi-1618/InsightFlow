@@ -7,8 +7,8 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Chat Bot",
-  description: "Chat Bot ",
+  title: "My Assistant",
+  description: "My Assistant is self assesed application developed by prudhvi using langgraph.",
 }
 
 export default function RootLayout({
